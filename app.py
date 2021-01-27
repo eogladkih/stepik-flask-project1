@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title=title)
+    return render_template('index.html', title=title, tours=tours)
 
 
 @app.route('/departures/<departure>/')
@@ -15,7 +15,7 @@ def dep(departure):
     return render_template('departure.html', title=title)
 
 
-@app.route('/tours/<int:id>/')
+@app.route('<int:id>/')
 def tour(id):
     return render_template('tour.html', title=title)
 

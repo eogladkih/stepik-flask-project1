@@ -7,17 +7,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title=title, tours=tours)
+    return render_template('index.html', title=title, tours=tours, departures=departures)
 
 
 @app.route('/departures/<departure>/')
 def dep(departure):
-    return render_template('departure.html', title=title)
+    return render_template('departure.html', title=title, tours=tours, departures=departures)
 
 
-@app.route('<int:id>/')
+@app.route('/tours/<int:id>/')
 def tour(id):
-    return render_template('tour.html', title=title)
+    return render_template('tour.html', title=title, tours=tours, departures=departures)
 
 
 if __name__ == '__main__':

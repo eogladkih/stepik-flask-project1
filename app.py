@@ -12,7 +12,7 @@ def index():
 
 @app.route('/departures/<departure>/')
 def dep(departure):
-    return render_template('departure.html', title=title, tours=tours, departures=departures)
+    return render_template('departure.html', title=title, tours=tours, departures=departures, departure=departure)
 
 
 @app.route('/tours/<int:id>/')

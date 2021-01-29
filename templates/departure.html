@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-  <main class="container mt-3">
-    <h1 class="display-5 mt-4">Летим из Новосибирска</h1>
-    <p class="mb-4">Найдено 15 туров, от 26 000 до 84 600 и от 4 ночей до 15 ночей</p>
+<main class="container mt-3">
+{% for dep_short,dep_long in departures.items() %}
+{% if dep_short == departure %}
+      <h1 class="display-5 mt-4">Летим {{ dep_long }}</h1>
+{% endif %}
+{% endfor %}
+
+{% set filtered_list = [] %}
+{% for v in tours.values() %}
+  {% if v.departure == departure %}
+    {% if filtered_list.append(v) %}{% endif %}
+  {% endif %}
+{% endfor %}
+
+
+    <p class="mb-4">Найдено {{ filtered_list|length }} туров, от {{ (filtered_list|min(attribute='price')).price }} до {{ (filtered_list|max(attribute='price')).price }} и от {{ (filtered_list|min(attribute='nights')).nights }} ночей до {{ (filtered_list|max(attribute='nights')).nights }} ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
       <div class="col-4">

@@ -2,27 +2,30 @@
 {% block content%}
   <main class="container mt-3">
     <!-- HERO -->
-    <section class="jumbotron text-center mt-4" style="background: url('https://place-hold.it/1600x300'); background-position: center center">
+    <section class="jumbotron text-center mt-4" style="background: url('http://peopleandcountries.com/data/attachment/portal/201907/27/190153gx9lc7swttcowax8.jpg'); background-position: center center">
       <h1 class="display-4">Всякие туры</h1>
       <p class="lead">Для тех, кого отвлекают дома</p>
       <p class="mt-5 w-50 mx-auto">Лучшие направления,где никто не будет вам мешать сидеть на берегу и изучать программирование, дизайн, разработку игр и управление продуктами</p>
     </section>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for i in range(1,7) %}
-      {% set tour = tours|random() %}
+      {% set counter = [] %}
+      {% for tour_key,tour_value in tours.items() %}
+      {% if counter.append(1) %}{% endif %}
+      {% if counter|length < 7 %}
             <div class="col-4">
         <div class="card mb-4">
           <div class="embed-responsive embed-responsive-16by9">
-             <img class="card-img-top embed-responsive-item" src="{{ tour.picture }}" alt="" />
+             <img class="card-img-top embed-responsive-item" src="{{ tour_value.picture }}" alt="" />
           </div>
           <div class="card-body">
-            <h2 class="h5 card-title">{{ tour.title }}</h2>
-            <p class="card-text text-truncate" >{{ tour.description }}</p>
-            <a href="/tours/{{ i }}" class="btn btn-sm btn-primary">Подробнее</a>
+            <h2 class="h5 card-title">{{ tour_value.title }}</h2>
+            <p class="card-text text-truncate" >{{ tour_value.description }}</p>
+            <a href="/tours/{{ tour_key }}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </main>

@@ -17,7 +17,7 @@ def dep(departure):
 
 @app.route('/tours/<int:id>/')
 def tour(id):
-    return render_template('tour.html', title=title, tours=tours, departures=departures)
+    return render_template('tour.html', title=title, tours=tours, departures=departures, id=id)
 
 
 if __name__ == '__main__':
